@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="用大掃除類比理解 Agentic AI 專有名詞的互動式中文圖卡詞庫。">
+    <title>Agentic AI Glossary | 智能團隊名詞圖鑑</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__image" aria-hidden="true">
+        <img src="assets/agentic-cleaning-hero.png" alt="">
+      </div>
+      <nav class="topbar" aria-label="主要導覽">
+        <a class="brand" href="#top" aria-label="回到首頁">
+          <span class="brand__mark">AI</span>
+          <span>Agentic AI Glossary</span>
+        </a>
+        <a class="topbar__link" href="#glossary">開始查詞</a>
+      </nav>
+      <section class="hero__content" id="top">
+        <p class="eyebrow">給用過 ChatGPT / Claude，但剛接觸 Agentic AI 的你</p>
+        <h1>從「自己下指令」<br>到「管理 AI 團隊」</h1>
+        <p class="hero__lead">
+          如果你已經會用 ChatGPT 或 Claude，下一步要理解的是：Agentic AI 不只是回答問題，
+          而是把「我要完成什麼」轉成一串可執行、可檢查、可被你監督的工作流程。
+        </p>
+        <div class="hero__actions">
+          <a class="button button--primary" href="#glossary">搜尋名詞</a>
+          <a class="button button--ghost" href="#map">看六大類別</a>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="intro section" aria-labelledby="intro-title">
+        <div class="section__inner">
+          <div class="intro__grid">
+            <div>
+              <p class="eyebrow">核心類比</p>
+              <h2 id="intro-title">不是把 AI 說成清潔員，而是比較三種工作方式。</h2>
+            </div>
+            <p>
+              大掃除只是幫你看懂 Agentic AI 的分工邏輯：傳統程式要你一步一步操作；聊天型 AI 幫你想、幫你寫，但通常還停在對話回合；Agentic AI 則把一個目標變成流程，自己規劃、查資料、使用工具、留下紀錄，必要時再把決策交回給人。
+            </p>
+          </div>
+          <div class="analogy-ladder" aria-label="三種 AI 互動方式比較">
+            <article>
+              <span>01</span>
+              <h3>傳統程式：掃把</h3>
+              <p>你每推一下，它才動一下。規則清楚、可預期，但不會自己判斷下一步。</p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>ChatGPT / Claude：聰明助手</h3>
+              <p>它能回答、整理、草擬與推理，但多半仍需要你持續給方向與下一個指令。</p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Agentic AI：清潔團隊</h3>
+              <p>你給的是目標與邊界。系統會拆任務、找資料、叫工具、檢查進度，遇到高風險再請你決定。</p>
+            </article>
+          </div>
+          <div class="role-map" aria-label="大掃除類比對應表">
+            <p><strong>Manager</strong><span>像領班，負責拆解任務、安排順序、整合結果。</span></p>
+            <p><strong>Agents</strong><span>像專家工班，分別處理搜尋、寫作、整理、測試或執行。</span></p>
+            <p><strong>RAG</strong><span>像翻手冊與查紀錄，讓答案有資料來源，不只靠印象。</span></p>
+            <p><strong>Tools</strong><span>像吸塵器、梯子與水管鉗，讓 AI 能真的操作外部系統。</span></p>
+            <p><strong>Guardrails</strong><span>像禁區與工作規範，限制哪些事不能做、哪些事要先確認。</span></p>
+            <p><strong>Human-in-the-loop</strong><span>像屋主驗收與核准，貴重物品或高風險動作要回來問人。</span></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="map" aria-labelledby="map-title">
+        <div class="section__inner">
+          <div class="section__header">
+            <div>
+              <p class="eyebrow">Learning Map</p>
+              <h2 id="map-title">六大類別</h2>
+            </div>
+            <p>先掌握分類，再回到卡片查單一名詞。</p>
+          </div>
+          <div class="category-map" id="categoryMap"></div>
+        </div>
+      </section>
+
+      <section class="section glossary-section" id="glossary" aria-labelledby="glossary-title">
+        <div class="section__inner">
+          <div class="section__header">
+            <div>
+              <p class="eyebrow">Glossary Cards</p>
+              <h2 id="glossary-title">名詞圖卡搜尋</h2>
+            </div>
+            <p id="resultCount" class="result-count" aria-live="polite"></p>
+          </div>
+
+          <div class="toolbar" role="search">
+            <label class="search">
+              <span>搜尋</span>
+              <input id="searchInput" type="search" placeholder="輸入 RAG、掃把、幻覺、guardrail..." autocomplete="off">
+            </label>
+            <button class="button button--small" id="resetButton" type="button">清除篩選</button>
+          </div>
+
+          <div class="filter-tabs" id="filterTabs" aria-label="依類別篩選"></div>
+          <div class="cards" id="cards"></div>
+          <p class="empty-state" id="emptyState" hidden>找不到符合的名詞。試試英文、中文或大掃除類比關鍵字。</p>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="term-dialog" id="termDialog" aria-labelledby="dialogTitle">
+      <button class="dialog-close" id="dialogClose" type="button" aria-label="關閉">×</button>
+      <p class="dialog-category" id="dialogCategory"></p>
+      <h2 id="dialogTitle"></h2>
+      <p class="dialog-zh" id="dialogZh"></p>
+      <div class="dialog-section">
+        <h3>一句話</h3>
+        <p id="dialogSummary"></p>
+      </div>
+      <div class="dialog-section dialog-section--analogy">
+        <h3>大掃除類比</h3>
+        <p id="dialogAnalogy"></p>
+      </div>
+      <div class="dialog-section">
+        <h3>正式定義</h3>
+        <p id="dialogDefinition"></p>
+      </div>
+      <div class="dialog-section">
+        <h3>相關詞</h3>
+        <div class="tag-list" id="dialogRelated"></div>
+      </div>
+    </dialog>
+
+    <footer class="footer">
+      <p>Built as a static GitHub Pages glossary. Source inspiration: local reference cards and awesome-agentic-ai-zh.</p>
+    </footer>
+
+    <script src="data/glossary.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
