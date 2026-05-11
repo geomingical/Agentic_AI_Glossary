@@ -10,12 +10,8 @@ This project is for readers who already understand basic AI chat interfaces, but
 
 ## GitHub Pages
 
-After pushing this repository to GitHub:
+Static website:
 
-1. Open repository settings.
-2. Go to Pages.
-3. Select deployment from the `main` branch.
-4. Use the repository root as the Pages source.
+https://geomingical.github.io/Agentic_AI_Glossary/
 
 No build step is required.
-
