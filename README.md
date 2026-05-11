@@ -8,25 +8,6 @@ The site explains each term through a consistent house-cleaning analogy, then an
 
 This project is for readers who already understand basic AI chat interfaces, but want to understand how agentic AI systems plan, use tools, retrieve information, remember context, evaluate outputs, and apply safety controls.
 
-## Sources
-
-- Local reference images in `reference/`
-- Public glossary terms from [awesome-agentic-ai-zh](https://github.com/WenyuChiou/awesome-agentic-ai-zh/blob/main/resources/glossary.md)
-
-## Local Preview
-
-Run a static server from the repository root:
-
-```bash
-python3 -m http.server 4173
-```
-
-Then open:
-
-```text
-http://localhost:4173
-```
-
 ## GitHub Pages
 
 After pushing this repository to GitHub:
