@@ -648,5 +648,245 @@ window.glossaryTerms = [
     definition: "The process of identifying potential harms, likelihood, impact, and controls for AI system behavior.",
     related: ["Human-in-the-loop", "Policy", "Guardrails"],
     tags: ["risk", "safety", "governance"]
+  },
+  {
+    term: "Artificial General Intelligence",
+    zh: "通用人工智慧",
+    category: "foundation",
+    summary: "理想中的 AI 能在廣泛任務上像人一樣學習、遷移與解決問題。",
+    analogy: "不是只會打掃的一組工班，而是任何房子、任何問題都能快速學會處理的全能管家。",
+    definition: "Artificial General Intelligence refers to a hypothetical AI system with broad, flexible capabilities across domains rather than narrow task-specific competence.",
+    related: ["Model", "Large Language Model", "Alignment"],
+    tags: ["AGI", "general intelligence", "future"]
+  },
+  {
+    term: "Pretraining",
+    zh: "預訓練",
+    category: "foundation",
+    summary: "模型在大量資料上先學會語言、知識與基本模式的階段。",
+    analogy: "清潔員正式接案前，先讀過大量清潔手冊、案例與常識教材。",
+    definition: "Pretraining is the initial large-scale training stage where a model learns general patterns from broad datasets before task-specific adaptation.",
+    related: ["Base Model", "Fine-tuning", "Post-training"],
+    tags: ["training", "model", "foundation"]
+  },
+  {
+    term: "Fine-tuning",
+    zh: "微調",
+    category: "foundation",
+    summary: "用較特定的資料或任務再訓練模型，使它更符合某個用途。",
+    analogy: "已受過訓的清潔員，再針對醫院、實驗室或豪宅清潔接受專門訓練。",
+    definition: "Fine-tuning adapts a pretrained model using additional task-specific, domain-specific, or behavior-specific data.",
+    related: ["Pretraining", "Instruction Tuning", "Base Model"],
+    tags: ["training", "adaptation", "domain"]
+  },
+  {
+    term: "Post-training",
+    zh: "後訓練",
+    category: "foundation",
+    summary: "預訓練後，用來改善模型可用性、指令遵循與安全性的訓練階段。",
+    analogy: "員工已學會基本清潔後，公司再訓練服務流程、客戶溝通與安全規範。",
+    definition: "Post-training includes techniques after pretraining that shape model behavior, such as instruction tuning, preference optimization, and safety tuning.",
+    related: ["Instruction Tuning", "RLHF", "Alignment"],
+    tags: ["training", "behavior", "alignment"]
+  },
+  {
+    term: "Instruction Tuning",
+    zh: "指令微調",
+    category: "foundation",
+    summary: "訓練模型更會理解並遵循人類用自然語言寫出的任務指令。",
+    analogy: "清潔員不只懂清潔知識，也學會看懂屋主的工作單並照格式回報。",
+    definition: "Instruction tuning trains a model on instruction-response examples so it better follows user requests.",
+    related: ["Fine-tuning", "System Prompt", "Post-training"],
+    tags: ["instruction", "training", "chat"]
+  },
+  {
+    term: "RLHF",
+    zh: "人類回饋強化學習",
+    category: "foundation",
+    summary: "利用人類偏好回饋來調整模型，使輸出更有幫助或更符合期待。",
+    analogy: "屋主比較兩種清潔成果並說哪個比較好，清潔公司據此調整訓練。",
+    definition: "Reinforcement Learning from Human Feedback uses human preference signals to optimize model behavior.",
+    related: ["Post-training", "Alignment", "Evaluation"],
+    tags: ["feedback", "preference", "training"]
+  },
+  {
+    term: "Alignment",
+    zh: "對齊",
+    category: "security",
+    summary: "讓 AI 的行為更符合人類意圖、價值、規則與安全邊界。",
+    analogy: "確保清潔團隊理解屋主真正想要的是整潔安全，而不是把所有東西都丟掉。",
+    definition: "Alignment is the effort to make AI systems behave according to intended goals, human preferences, policies, and safety constraints.",
+    related: ["RLHF", "Policy", "Guardrails"],
+    tags: ["safety", "values", "control"]
+  },
+  {
+    term: "Base Model",
+    zh: "基礎模型",
+    category: "foundation",
+    summary: "經過預訓練、但尚未完整調成對話或特定任務風格的模型。",
+    analogy: "剛完成通識訓練的清潔新人，能力很廣，但還不一定懂公司的服務流程。",
+    definition: "A base model is a pretrained model before extensive instruction tuning, preference tuning, or product-specific adaptation.",
+    related: ["Pretraining", "Fine-tuning", "Large Language Model"],
+    tags: ["model", "pretrained", "foundation"]
+  },
+  {
+    term: "Inference",
+    zh: "推論",
+    category: "performance",
+    summary: "模型被實際呼叫並根據輸入產生輸出或決策的過程。",
+    analogy: "清潔員正式進場工作，根據現場狀況開始判斷與執行。",
+    definition: "Inference is the runtime process where a trained model produces outputs from inputs.",
+    related: ["Latency", "Cost", "Token"],
+    tags: ["runtime", "serving", "generation"]
+  },
+  {
+    term: "Agent Loop",
+    zh: "智能體循環",
+    category: "reasoning",
+    summary: "Agent 在觀察、思考、行動、再觀察之間反覆推進任務的循環。",
+    analogy: "清潔員看現場、決定下一步、拿工具處理、再檢查是否乾淨。",
+    definition: "An agent loop is an iterative control pattern where an agent observes state, reasons or plans, acts, and uses the result to decide the next step.",
+    related: ["Observation", "Action", "ReAct"],
+    tags: ["loop", "agent", "control"]
+  },
+  {
+    term: "Action",
+    zh: "行動",
+    category: "reasoning",
+    summary: "Agent 根據計畫或判斷採取的具體步驟，常包含工具呼叫。",
+    analogy: "不是只說應該吸地，而是真的拿起吸塵器開始吸。",
+    definition: "An action is a concrete operation selected by an agent, such as calling a tool, changing state, or producing an output.",
+    related: ["Tool Use", "Agent Loop", "Observation"],
+    tags: ["act", "tool", "execution"]
+  },
+  {
+    term: "Observation",
+    zh: "觀察結果",
+    category: "reasoning",
+    summary: "工具、環境或前一步行動回傳給 agent 的資訊。",
+    analogy: "吸完地後看到灰塵是否還在，或查手冊後得到的處理建議。",
+    definition: "An observation is feedback from the environment, tools, or system state that informs an agent's next decision.",
+    related: ["Action", "Agent Loop", "Environment"],
+    tags: ["feedback", "state", "agent"]
+  },
+  {
+    term: "Environment",
+    zh: "環境",
+    category: "foundation",
+    summary: "Agent 能觀察、互動或改變的外部世界或工作空間。",
+    analogy: "清潔團隊所在的房子、房間、工具間與屋主規則，就是它的工作環境。",
+    definition: "The environment is the external context an agent can observe and act upon, such as files, browsers, APIs, databases, or user interfaces.",
+    related: ["Agent", "Observation", "Sandbox"],
+    tags: ["world", "workspace", "interaction"]
+  },
+  {
+    term: "State Machine",
+    zh: "狀態機",
+    category: "memory",
+    summary: "用明確狀態與轉換規則管理流程，避免 agent 隨意跳步。",
+    analogy: "清潔流程表規定：待清潔、清潔中、待驗收、已完成，每一步都有條件。",
+    definition: "A state machine models a workflow as a finite set of states and allowed transitions between them.",
+    related: ["State", "Workflow", "Orchestration"],
+    tags: ["state", "workflow", "control"]
+  },
+  {
+    term: "Routing",
+    zh: "路由",
+    category: "foundation",
+    summary: "決定任務、訊息或資料該交給哪個模型、agent、工具或流程。",
+    analogy: "領班判斷這件事該交給洗窗專家、水管師傅還是驗收人員。",
+    definition: "Routing selects the appropriate component, model, tool, or workflow path based on input, context, or policy.",
+    related: ["Orchestration", "Manager Agent", "Workflow"],
+    tags: ["routing", "dispatch", "selection"]
+  },
+  {
+    term: "Planner",
+    zh: "規劃器",
+    category: "reasoning",
+    summary: "負責把目標轉成步驟、順序與可執行計畫的元件或 agent。",
+    analogy: "清潔領班先排出今天的任務路線與分工表。",
+    definition: "A planner is a component that generates, updates, or selects a sequence of steps to achieve a goal.",
+    related: ["Planning", "Task Decomposition", "Executor"],
+    tags: ["plan", "component", "agent"]
+  },
+  {
+    term: "Executor",
+    zh: "執行器",
+    category: "reasoning",
+    summary: "負責根據計畫實際呼叫工具、執行步驟或產生結果的元件。",
+    analogy: "真正拿著工具去擦窗、拖地、清水管的工班。",
+    definition: "An executor carries out planned steps by invoking tools, modifying state, or producing task outputs.",
+    related: ["Planner", "Tool Use", "Action"],
+    tags: ["execution", "agent", "tools"]
+  },
+  {
+    term: "Critic",
+    zh: "評審器",
+    category: "performance",
+    summary: "負責檢查、批判或評分輸出品質的模型、agent 或流程。",
+    analogy: "驗收人員檢查角落是否還有灰塵，指出需要重做的地方。",
+    definition: "A critic is a review component that evaluates outputs, detects issues, and provides feedback for revision.",
+    related: ["Evaluation", "Reflection", "Self-Correction"],
+    tags: ["review", "quality", "feedback"]
+  },
+  {
+    term: "Structured Output",
+    zh: "結構化輸出",
+    category: "foundation",
+    summary: "讓模型按固定格式輸出，例如 JSON，方便程式繼續處理。",
+    analogy: "清潔員不是口頭亂講，而是填寫固定欄位的完工表。",
+    definition: "Structured output constrains model responses to a predictable format such as JSON, schema-conforming objects, or typed fields.",
+    related: ["Schema", "Function Calling", "API"],
+    tags: ["json", "format", "automation"]
+  },
+  {
+    term: "Schema",
+    zh: "結構規格",
+    category: "foundation",
+    summary: "定義資料、工具參數或輸出格式應有哪些欄位與型別。",
+    analogy: "清潔工單的固定表格：房間、任務、工具、狀態、備註都要填對。",
+    definition: "A schema specifies the structure, fields, types, and constraints for data exchanged between components.",
+    related: ["Structured Output", "Function Calling", "Tool"],
+    tags: ["schema", "types", "validation"]
+  },
+  {
+    term: "Retrieval",
+    zh: "檢索",
+    category: "tools",
+    summary: "從文件、資料庫或搜尋系統中找出與問題相關的資訊。",
+    analogy: "清潔員先翻手冊、查過去紀錄，找出最相關的處理方法。",
+    definition: "Retrieval is the process of finding relevant information from external sources for use by a model or workflow.",
+    related: ["RAG", "Vector Database", "Reranking"],
+    tags: ["search", "documents", "rag"]
+  },
+  {
+    term: "Reranking",
+    zh: "重新排序",
+    category: "tools",
+    summary: "把初步檢索到的資料重新評分排序，挑出最有用的內容。",
+    analogy: "先找到一疊清潔手冊頁面，再把最適合目前污漬的幾頁放到最前面。",
+    definition: "Reranking reorders retrieved candidates using a relevance model or scoring method to improve the final context quality.",
+    related: ["Retrieval", "RAG", "Embedding"],
+    tags: ["ranking", "retrieval", "relevance"]
+  },
+  {
+    term: "Agentic Workflow",
+    zh: "智能體工作流",
+    category: "foundation",
+    summary: "把 agent、工具、記憶、評估與安全控制組成可執行流程的設計。",
+    analogy: "完整的大掃除服務流程：接案、分工、查資料、動手、驗收、回報。",
+    definition: "An agentic workflow coordinates agents, tools, memory, state, evaluation, and guardrails to complete a goal-directed task.",
+    related: ["Workflow", "Agent", "Orchestration"],
+    tags: ["agentic", "workflow", "system"]
+  },
+  {
+    term: "Model Distillation",
+    zh: "模型蒸餾",
+    category: "foundation",
+    summary: "用大型模型的能力或輸出訓練較小模型，使其更便宜或更快。",
+    analogy: "資深清潔專家把經驗整理成訓練教材，讓新人用較低成本學會關鍵技巧。",
+    definition: "Model distillation transfers behavior or knowledge from a larger teacher model to a smaller student model.",
+    related: ["Fine-tuning", "Base Model", "Cost"],
+    tags: ["training", "compression", "efficiency"]
   }
 ];
