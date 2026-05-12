@@ -76,7 +76,7 @@ window.glossaryTerms = [
     summary: "由多個 agent 協作完成任務的系統。",
     analogy: "一整支清潔團隊，有領班、窗戶專家、地板專家與驗收人員。",
     definition: "A system where multiple agents coordinate, divide responsibilities, exchange information, or review each other's work.",
-    related: ["Agent", "Manager", "Orchestration"],
+    related: ["Agent", "Manager Agent", "Orchestration"],
     tags: ["team", "collaboration", "agentic"]
   },
   {
@@ -426,7 +426,7 @@ window.glossaryTerms = [
     summary: "系統從收到請求到產生回應或完成動作所花的時間。",
     analogy: "你叫清潔員開始掃地，她站在原地發呆十秒才動手。",
     definition: "The elapsed time between an input, request, or action trigger and the system's response.",
-    related: ["Token", "Cost", "Performance"],
+    related: ["Token", "Cost", "Inference"],
     tags: ["speed", "performance", "delay"]
   },
   {
@@ -586,7 +586,7 @@ window.glossaryTerms = [
     summary: "隔離的執行環境，用來限制程式或 agent 造成的影響。",
     analogy: "先讓清潔員在測試房間試清潔劑，避免直接毀掉客廳地板。",
     definition: "An isolated environment that restricts file, network, system, or application access during execution.",
-    related: ["Permission", "Code Interpreter", "Security"],
+    related: ["Permission", "Code Interpreter", "Guardrails"],
     tags: ["isolation", "execution", "safety"]
   },
   {
@@ -658,6 +658,16 @@ window.glossaryTerms = [
     definition: "Artificial General Intelligence refers to a hypothetical AI system with broad, flexible capabilities across domains rather than narrow task-specific competence.",
     related: ["Model", "Large Language Model", "Alignment"],
     tags: ["AGI", "general intelligence", "future"]
+  },
+  {
+    term: "Harness Engineering",
+    zh: "裝具工程",
+    category: "foundation",
+    summary: "把模型包進工具、記憶、流程、權限與安全控制中，讓它能成為可工作的 agent。",
+    analogy: "模型像聰明清潔員，harness engineering 則是替他配好工單、工具箱、門禁、回報流程與安全規則。",
+    definition: "Harness engineering designs the surrounding system that turns a model into a usable agent, including prompts, tools, memory, state, permissions, workflow logic, and guardrails.",
+    related: ["Agent", "Model", "Agentic Workflow", "Orchestration"],
+    tags: ["harness", "agent = model + harness", "system design"]
   },
   {
     term: "Pretraining",

@@ -157,8 +157,8 @@ function renderCards() {
       <p class="term-card__zh">${term.zh}</p>
       <p class="term-card__summary">${term.summary}</p>
       <p class="term-card__analogy">${term.analogy}</p>
-      <div class="term-card__tags">
-        ${term.tags.slice(0, 3).map((tag) => `<span>${tag}</span>`).join("")}
+      <div class="term-card__tags" aria-label="相關詞">
+        ${term.related.slice(0, 3).map((related) => `<span>${related}</span>`).join("")}
       </div>
     </article>
   `).join("");

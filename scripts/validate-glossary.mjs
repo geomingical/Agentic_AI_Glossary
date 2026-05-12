@@ -3,6 +3,7 @@ import vm from "node:vm";
 
 const expectedTerms = [
   "Artificial General Intelligence",
+  "Harness Engineering",
   "Pretraining",
   "Fine-tuning",
   "Post-training",
@@ -48,8 +49,8 @@ if (!Array.isArray(terms)) {
   throw new Error("window.glossaryTerms must be an array");
 }
 
-if (terms.length !== 89) {
-  throw new Error(`Expected 89 glossary terms, found ${terms.length}`);
+if (terms.length !== 90) {
+  throw new Error(`Expected 90 glossary terms, found ${terms.length}`);
 }
 
 const byTerm = new Map();
@@ -81,6 +82,14 @@ for (const entry of terms) {
 for (const term of expectedTerms) {
   if (!byTerm.has(term)) {
     throw new Error(`Missing expected term: ${term}`);
+  }
+}
+
+for (const entry of terms) {
+  for (const related of entry.related) {
+    if (!byTerm.has(related)) {
+      throw new Error(`${entry.term} has related term not in glossary: ${related}`);
+    }
   }
 }
 
