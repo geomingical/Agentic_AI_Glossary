@@ -531,7 +531,7 @@ window.glossaryTerms = [
   },
   {
     term: "Human-in-the-loop",
-    zh: "人在迴圈中",
+    zh: "人機互動",
     category: "security",
     summary: "在關鍵、不確定或高風險步驟讓人類審核或決定。",
     analogy: "清潔員碰到貴重物品或不確定該不該丟的東西時，停下來問屋主。",
@@ -668,6 +668,26 @@ window.glossaryTerms = [
     definition: "Harness engineering designs the surrounding system that turns a model into a usable agent, including prompts, tools, memory, state, permissions, workflow logic, and guardrails.",
     related: ["Agent", "Model", "Agentic Workflow", "Orchestration"],
     tags: ["harness", "agent = model + harness", "system design"]
+  },
+  {
+    term: "Plugin",
+    zh: "外掛",
+    category: "tools",
+    summary: "可額外安裝的擴充模組，讓系統獲得新的能力或整合。",
+    analogy: "清潔公司原本沒有地毯清洗服務，裝上專用模組後，就多了一套可叫用的新設備與流程。",
+    definition: "A plugin is an installable extension that adds capabilities, integrations, or behaviors to an existing software system.",
+    related: ["Tool", "Connector", "Skill"],
+    tags: ["extension", "integration", "module"]
+  },
+  {
+    term: "Command Line Interface",
+    zh: "命令列介面",
+    category: "foundation",
+    summary: "用文字命令操作程式、工具或系統的介面，常縮寫為 CLI。",
+    analogy: "不是對清潔員口頭描述，而是遞上一張格式精準的工作指令單，照字句執行。",
+    definition: "A command line interface is a text-based interface for operating software by entering commands, often abbreviated as CLI.",
+    related: ["API", "Tool", "Code Interpreter"],
+    tags: ["CLI", "terminal", "command line"]
   },
   {
     term: "Pretraining",

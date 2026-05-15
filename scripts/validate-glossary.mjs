@@ -4,6 +4,8 @@ import vm from "node:vm";
 const expectedTerms = [
   "Artificial General Intelligence",
   "Harness Engineering",
+  "Plugin",
+  "Command Line Interface",
   "Pretraining",
   "Fine-tuning",
   "Post-training",
@@ -49,8 +51,8 @@ if (!Array.isArray(terms)) {
   throw new Error("window.glossaryTerms must be an array");
 }
 
-if (terms.length !== 90) {
-  throw new Error(`Expected 90 glossary terms, found ${terms.length}`);
+if (terms.length !== 92) {
+  throw new Error(`Expected 92 glossary terms, found ${terms.length}`);
 }
 
 const byTerm = new Map();
