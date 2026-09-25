@@ -23,6 +23,8 @@ No build step is required.
 - Search ignores case and surrounding whitespace. Exact English/Chinese names and aliases rank first, partial name/alias matches next, exact related search terms next, then matches in descriptions and other content. Ties preserve glossary order.
 - `Tool Calling` finds **Function Calling** as a common alias. `Tool Result` / `Tool Output` find **Observation** as a broader concept, not a synonym. `Parameters` / `Arguments` lead to **Schema**.
 - Related-term buttons clear the category filter so cross-category links remain reachable.
+- Training terms distinguish stages (**Pretraining**, **Post-training**) from methods (**Fine-tuning**, **SFT**, **RL**, **RLHF**). Search `Pre-trained` or `Fine-tuned` for the corresponding process card and an explanation of the adjective.
+- **SFT** and **RL** support their full English names. **Chain-of-Thought** supports `CoT`, `Chain of Thought`, and the typo `chain-of-though`; its note distinguishes stepwise reasoning from training stages.
 
 ## Local verification
 
