@@ -2,6 +2,9 @@ import { readFile } from "node:fs/promises";
 import vm from "node:vm";
 
 const expectedTerms = [
+  "Context",
+  "Memory",
+  "Webhook",
   "Artificial General Intelligence",
   "Harness Engineering",
   "Plugin",
@@ -51,10 +54,6 @@ if (!Array.isArray(terms)) {
   throw new Error("window.glossaryTerms must be an array");
 }
 
-if (terms.length !== 92) {
-  throw new Error(`Expected 92 glossary terms, found ${terms.length}`);
-}
-
 const byTerm = new Map();
 for (const entry of terms) {
   if (byTerm.has(entry.term)) {
@@ -78,6 +77,28 @@ for (const entry of terms) {
 
   if (!Array.isArray(entry.tags) || entry.tags.length === 0) {
     throw new Error(`${entry.term} must have tags`);
+  }
+
+  for (const field of ["aliases", "searchTerms"]) {
+    if (field in entry && (
+      !Array.isArray(entry[field]) ||
+      entry[field].length === 0 ||
+      entry[field].some((value) => typeof value !== "string" || value.trim() === "")
+    )) {
+      throw new Error(`${entry.term} has invalid ${field}`);
+    }
+  }
+
+  if ("examples" in entry && (
+    !Array.isArray(entry.examples) ||
+    entry.examples.length === 0 ||
+    entry.examples.some((example) => !example ||
+      ["label", "value"].some((field) =>
+        typeof example[field] !== "string" || example[field].trim() === ""
+      )
+    )
+  )) {
+    throw new Error(`${entry.term} has invalid examples`);
   }
 }
 

@@ -26,7 +26,7 @@ const categories = [
   {
     id: "memory",
     label: "記憶與上下文",
-    description: "Context window、短期記憶、長期記憶與狀態。",
+    description: "從 Context、Memory 總覽開始，再認識容量、記憶類型與狀態。",
     icon: "04"
   },
   {
@@ -64,6 +64,11 @@ const els = {
   dialogSummary: document.querySelector("#dialogSummary"),
   dialogAnalogy: document.querySelector("#dialogAnalogy"),
   dialogDefinition: document.querySelector("#dialogDefinition"),
+  dialogAliases: document.querySelector("#dialogAliases"),
+  dialogNoteSection: document.querySelector("#dialogNoteSection"),
+  dialogNote: document.querySelector("#dialogNote"),
+  dialogExamplesSection: document.querySelector("#dialogExamplesSection"),
+  dialogExamples: document.querySelector("#dialogExamples"),
   dialogRelated: document.querySelector("#dialogRelated")
 };
 
@@ -83,20 +88,32 @@ function searchableText(term) {
     term.summary,
     term.analogy,
     term.definition,
+    term.note,
+    ...(term.aliases || []),
+    ...(term.searchTerms || []),
+    ...(term.examples || []).map((example) => `${example.label} ${example.value}`),
     term.related.join(" "),
     term.tags.join(" ")
   ].join(" "));
 }
 
-function matches(term) {
-  const query = normalize(state.query);
-  const categoryMatch = state.category === "all" || term.category === state.category;
-  const queryMatch = !query || searchableText(term).includes(query);
-  return categoryMatch && queryMatch;
-}
-
 function filteredTerms() {
-  return window.glossaryTerms.filter(matches);
+  const query = normalize(state.query);
+  const ranked = [];
+  for (const term of window.glossaryTerms) {
+    if (state.category !== "all" && term.category !== state.category) continue;
+    const names = [term.term, term.zh, ...(term.aliases || [])].map(normalize);
+    let rank = 0;
+    if (query) {
+      if (names.includes(query)) rank = 0;
+      else if (names.some((name) => name.includes(query))) rank = 1;
+      else if ((term.searchTerms || []).some((name) => normalize(name) === query)) rank = 2;
+      else if (searchableText(term).includes(query)) rank = 3;
+      else continue;
+    }
+    ranked.push({ term, rank });
+  }
+  return ranked.sort((a, b) => a.rank - b.rank).map(({ term }) => term);
 }
 
 function setCategory(categoryId) {
@@ -150,7 +167,7 @@ function renderCards() {
   els.cards.innerHTML = terms.map((term, index) => `
     <article class="term-card" data-index="${window.glossaryTerms.indexOf(term)}">
       <div class="term-card__top">
-        <span class="term-card__category">${categoryLabel(term.category)}</span>
+        <span class="term-card__category">${categoryLabel(term.category)}${term.overview ? " · 總覽入口" : ""}</span>
         <span class="term-card__number">${String(index + 1).padStart(2, "0")}</span>
       </div>
       <h3>${term.term}</h3>
@@ -178,6 +195,19 @@ function openDialog(term) {
   els.dialogSummary.textContent = term.summary;
   els.dialogAnalogy.textContent = term.analogy;
   els.dialogDefinition.textContent = term.definition;
+  els.dialogAliases.textContent = term.aliases?.length ? `常見別名：${term.aliases.join("、")}` : "";
+  els.dialogAliases.hidden = !term.aliases?.length;
+  els.dialogNoteSection.hidden = !term.note;
+  els.dialogNote.textContent = term.note || "";
+  els.dialogExamplesSection.hidden = !term.examples?.length;
+  els.dialogExamples.replaceChildren();
+  for (const example of term.examples || []) {
+    const label = document.createElement("dt");
+    label.textContent = example.label;
+    const value = document.createElement("dd");
+    value.textContent = example.value;
+    els.dialogExamples.append(label, value);
+  }
   els.dialogRelated.innerHTML = term.related.map((item) => `<button type="button">${item}</button>`).join("");
 
   els.dialogRelated.querySelectorAll("button").forEach((button) => {
@@ -185,6 +215,7 @@ function openDialog(term) {
       els.dialog.close();
       els.searchInput.value = button.textContent;
       state.query = button.textContent;
+      state.category = "all";
       render();
       document.querySelector("#glossary").scrollIntoView({ behavior: "smooth" });
     });
