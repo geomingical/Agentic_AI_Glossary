@@ -112,6 +112,8 @@ window.glossaryTerms = [
   {
     term: "Function Calling",
     zh: "函式呼叫",
+    aliases: ["Tool Calling", "工具呼叫"],
+    note: "Function Calling 與 Tool Calling 在許多工具介面中常交替使用，實際範圍依平台而異。Tool Use 是較廣的工具使用能力；模型提出呼叫要求後，仍由程式執行工具。",
     category: "foundation",
     summary: "模型用結構化方式要求程式執行某個函式或工具。",
     analogy: "領班不是自己修水管，而是填好工單叫水管師傅來。",
@@ -243,6 +245,8 @@ window.glossaryTerms = [
     term: "Tool Use",
     zh: "工具使用",
     category: "tools",
+    searchTerms: ["Tool Calling"],
+    note: "Tool Use 指使用工具的整體能力；Function Calling／Tool Calling 則描述模型如何提出結構化的呼叫要求，不宜直接視為完全同義。",
     summary: "模型或 agent 呼叫外部工具來取得資訊或執行動作。",
     analogy: "清潔員拿起吸塵器、抹布、鋼刷或電話，而不是只靠嘴巴說。",
     definition: "The ability of an AI system to call external functions, services, applications, or devices.",
@@ -340,13 +344,48 @@ window.glossaryTerms = [
     tags: ["integration", "service", "access"]
   },
   {
+    term: "Webhook",
+    zh: "事件回呼",
+    category: "tools",
+    summary: "外部系統在指定事件發生時，向預先設定的網址發送 HTTP 請求，通知接收端處理。",
+    analogy: "住戶退房後，櫃台主動通知清潔團隊，不必由清潔團隊一直打電話詢問。",
+    definition: "An event-driven HTTP callback that sends a request to a configured endpoint when a specified event occurs.",
+    note: "例如：表單送出 → Webhook 通知你的服務 → 工作流程啟動 → 必要時由 agent 處理。工具呼叫通常是 agent 主動要求做事；Webhook 可以讓外部事件觸發流程，並不代表一定有 AI 參與。",
+    related: ["API", "Workflow", "Connector"],
+    tags: ["event", "http", "callback", "automation"]
+  },
+  {
+    term: "Context",
+    zh: "上下文",
+    category: "memory",
+    overview: true,
+    summary: "模型這次處理任務時取得的資訊，例如指令、對話、文件與工具結果。",
+    analogy: "領班這次攤在工作桌上的資料：今天的任務、房屋格局與剛回報的清潔結果。",
+    definition: "The information supplied to a model for its current processing, including instructions, conversation, retrieved material, and tool results.",
+    note: "Context 是這次提供給模型的資訊；Memory 是系統保留、供之後使用的資訊。記憶被取出並提供給模型時，才成為這次的 Context。Context Window 關注容量，Context Engineering 關注資訊的選擇與整理。",
+    related: ["Context Window", "Context Engineering", "Memory"],
+    tags: ["context", "overview", "上下文總覽"]
+  },
+  {
+    term: "Memory",
+    zh: "記憶",
+    category: "memory",
+    overview: true,
+    summary: "系統在同一任務內或跨任務保留、取用資訊的機制。",
+    analogy: "清潔團隊的記事本與客戶檔案；需要時再翻出來，放到這次的工作桌上。",
+    definition: "Mechanisms for retaining and retrieving information within or across tasks and sessions in an AI system.",
+    note: "短期／長期偏向保留時間與使用範圍；事件／語意偏向記錄的內容類型，並非互斥的四種抽屜，例如事件記憶也可以長期保存。保存的資訊不會自動全部進入模型的 Context。",
+    related: ["Short-term Memory", "Long-term Memory", "Episodic Memory", "Semantic Memory", "Context"],
+    tags: ["memory", "overview", "記憶總覽"]
+  },
+  {
     term: "Context Window",
     zh: "上下文視窗",
     category: "memory",
     summary: "模型一次能看見並處理的資訊容量。",
-    analogy: "清潔領班一次能記住多少房間細節；太多就會忘記客廳剛剛說過什麼。",
+    analogy: "領班的工作桌一次能攤開多少資料；桌面有限，放不下時就得挑選、摘要或移走部分資料。",
     definition: "The maximum amount of input and output context a model can process in a single interaction or run.",
-    related: ["Token", "Context Engineering", "Short-term Memory"],
+    related: ["Context", "Token", "Context Engineering", "Short-term Memory"],
     tags: ["context", "memory", "limit"]
   },
   {
@@ -793,6 +832,8 @@ window.glossaryTerms = [
     term: "Observation",
     zh: "觀察結果",
     category: "reasoning",
+    searchTerms: ["Tool Result", "Tool Output", "工具結果", "工具輸出"],
+    note: "Tool Result／Tool Output（工具結果／工具輸出）是 Observation 的一種。Observation 也可以來自環境或系統狀態，並不完全等於工具結果。",
     summary: "工具、環境或前一步行動回傳給 agent 的資訊。",
     analogy: "吸完地後看到灰塵是否還在，或查手冊後得到的處理建議。",
     definition: "An observation is feedback from the environment, tools, or system state that informs an agent's next decision.",
@@ -873,9 +914,16 @@ window.glossaryTerms = [
     term: "Schema",
     zh: "結構規格",
     category: "foundation",
+    searchTerms: ["Parameter", "Parameters", "Argument", "Arguments"],
     summary: "定義資料、工具參數或輸出格式應有哪些欄位與型別。",
-    analogy: "清潔工單的固定表格：房間、任務、工具、狀態、備註都要填對。",
+    analogy: "清潔工單要求「房間名稱」必填且為文字；這次實際填入「客廳」。表格規則不是填入的內容。",
     definition: "A schema specifies the structure, fields, types, and constraints for data exchanged between components.",
+    note: "以 get_weather 為例：Parameter 是工具接受的參數；Schema 規定欄位與限制；Arguments 是本次傳入的值。符合 Schema 只代表格式符合規則，不代表內容一定正確或工具一定執行成功。",
+    examples: [
+      { label: "Parameter／參數定義", value: "location：工具接受的位置參數。" },
+      { label: "Schema／結構規格", value: '{"type":"object","properties":{"location":{"type":"string"}},"required":["location"],"additionalProperties":false}' },
+      { label: "Arguments／本次傳入值", value: '{"location":"Taipei"}' }
+    ],
     related: ["Structured Output", "Function Calling", "Tool"],
     tags: ["schema", "types", "validation"]
   },
